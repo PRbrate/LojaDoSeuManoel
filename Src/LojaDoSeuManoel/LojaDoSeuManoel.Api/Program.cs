@@ -1,11 +1,23 @@
+using System.Globalization;
+using LojaDoSeuManoel.Api.ApiConfig;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+
+var cultureInfo = new CultureInfo("pt-BR");
+CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
+CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.AddVersioningConfig();
+
+
 
 var app = builder.Build();
 
