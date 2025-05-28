@@ -1,5 +1,7 @@
 ﻿using LojaDoSeuManoel.Api.Dtos;
+using LojaDoSeuManoel.Api.Dtqs;
 using LojaDoSeuManoel.Api.Entities;
+using LojaDoSeuManoel.Api.Entities.Enums;
 
 namespace LojaDoSeuManoel.MappingsConfig
 {
@@ -9,9 +11,13 @@ namespace LojaDoSeuManoel.MappingsConfig
         {
             Name = userDto.Name,
             Email = userDto.Email,
+            Role = UserRole.Customer,
             UserName = userDto.Email.Split('@')[0],
             Address = userDto.Address,
             PasswordHash = userDto.Password
         };
+
+        public static UserDto Map(this User user) => new
+            (user.Id, user.Name, user.Email, user.Address);
     }
 }

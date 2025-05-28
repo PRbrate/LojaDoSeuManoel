@@ -22,10 +22,8 @@ namespace LojaDoSeuManoel.Core.Base.Controller
             if (appUser.IsAuthenticated())
             {
                 UserId = appUser.GetUserId();
-                //ContaId = appUser.GetAccountId();
                 AuthenticatedUser = true;
             }
-            //_auditoria = auditoria;
         }
         protected bool ValidOperation()
         {

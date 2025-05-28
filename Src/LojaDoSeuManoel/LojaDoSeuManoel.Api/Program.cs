@@ -1,7 +1,9 @@
 using System.Globalization;
 using Asp.Versioning.ApiExplorer;
 using LojaDoSeuManoel.Api.ApiConfig;
+using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Repositories.Context;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,11 +20,19 @@ CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.Configure<JwtSettings>(
+    builder.Configuration.GetSection("JwtSettings"));
+
+
 builder.Services.AddDbContext<LojaDoSeuManoelContext>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("Connection")));
+
+builder.Services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<LojaDoSeuManoelContext>()
+                .AddDefaultTokenProviders();
 
 builder.AddVersioningConfig();
 
-
+builder.Services.RegisterServices();
 
 var app = builder.Build();
 
