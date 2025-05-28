@@ -1,7 +1,9 @@
-﻿using LojaDoSeuManoel.Application;
+﻿using LojaDoSeuManoel.Api.Dtos;
+using LojaDoSeuManoel.Api.Entities;
+using LojaDoSeuManoel.Api.Services;
 using LojaDoSeuManoel.Core;
 using LojaDoSeuManoel.Core.Base.Controller;
-using LojaDoSeuManoel.Domain;
+using LojaDoSeuManoel.MappingsConfig;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
