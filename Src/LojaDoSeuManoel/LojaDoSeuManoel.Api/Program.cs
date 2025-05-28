@@ -18,7 +18,6 @@ CultureInfo.DefaultThreadCurrentCulture = cultureInfo;
 CultureInfo.DefaultThreadCurrentUICulture = cultureInfo;
 
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 builder.Services.Configure<JwtSettings>(
     builder.Configuration.GetSection("JwtSettings"));
@@ -30,7 +29,8 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<LojaDoSeuManoelContext>()
                 .AddDefaultTokenProviders();
 
-builder.AddVersioningConfig();
+builder.AddVersioningConfig()
+    .AddSwaggerConfig();
 
 builder.Services.RegisterServices();
 
