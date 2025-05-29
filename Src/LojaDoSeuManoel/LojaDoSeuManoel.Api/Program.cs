@@ -30,7 +30,8 @@ builder.Services.AddIdentity<User, IdentityRole>()
                 .AddDefaultTokenProviders();
 
 builder.AddVersioningConfig()
-    .AddSwaggerConfig();
+    .AddSwaggerConfig()
+    .AddIdentityConfig();
 
 builder.Services.RegisterServices();
 

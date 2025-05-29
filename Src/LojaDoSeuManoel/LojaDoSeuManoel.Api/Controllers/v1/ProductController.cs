@@ -1,17 +1,15 @@
-﻿using LojaDoSeuManoel.Api.Dtos;
-using LojaDoSeuManoel.Api.Dtqs;
-using LojaDoSeuManoel.Api.Entities;
+﻿using LojaDoSeuManoel.Api.Dtqs;
 using LojaDoSeuManoel.Api.Services;
 using LojaDoSeuManoel.Api.Services.Interfaces;
 using LojaDoSeuManoel.Core;
 using LojaDoSeuManoel.Core.Base.Controller;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LojaDoSeuManoel.Api.Controllers.v1
 {
     [ApiVersion("1.0")]
+    [Authorize(Roles = "Admin")]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ProductController : ApiControllerBase
     {
