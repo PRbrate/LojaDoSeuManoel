@@ -1,5 +1,6 @@
 ﻿using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Repositories.Context;
+using LojaDoSeuManoel.Api.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace LojaDoSeuManoel.Api.Repositories

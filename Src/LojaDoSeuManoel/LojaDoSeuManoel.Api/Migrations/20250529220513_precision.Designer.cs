@@ -4,6 +4,7 @@ using LojaDoSeuManoel.Api.Repositories.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaDoSeuManoel.Api.Migrations
 {
     [DbContext(typeof(LojaDoSeuManoelContext))]
-    partial class LojaDoSeuManoelContextModelSnapshot : ModelSnapshot
+    [Migration("20250529220513_precision")]
+    partial class precision
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -1,6 +1,6 @@
 ﻿using LojaDoSeuManoel.Api.Entities;
 
-namespace LojaDoSeuManoel.Api.Repositories
+namespace LojaDoSeuManoel.Api.Repositories.Interfaces
 {
     public interface IUserRepository
     {

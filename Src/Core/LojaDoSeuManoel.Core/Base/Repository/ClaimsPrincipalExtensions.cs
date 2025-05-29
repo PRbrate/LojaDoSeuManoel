@@ -26,9 +26,8 @@ namespace LojaDoSeuManoel.Core
                 throw new ArgumentException(nameof(principal));
             }
 
-            var userId = principal.Claims.FirstOrDefault(c => c.Type == "UserId").Value;
-
-            return userId;
+            var claim = principal?.Claims.FirstOrDefault(c => c.Type == "UserId");
+            return claim?.Value ?? string.Empty;
         }
 
         public static string GetUserEmail(this ClaimsPrincipal principal)

@@ -24,7 +24,7 @@ namespace LojaDoSeuManoel.Api.Repositories.Context
 
             configurationBuilder
                 .Properties<decimal>()
-                .HavePrecision(2, 2);
+                .HavePrecision(18, 2);
         }
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -39,14 +39,15 @@ namespace LojaDoSeuManoel.Api.Repositories.Context
                 .HasKey(login => login.UserId);
 
             builder.Entity<User>()
-            .HasMany(u => u.Requesteds)
-            .WithOne(s => s.User)
-            .HasForeignKey(u => u.UserId);
+                .HasMany(u => u.Requesteds)
+                .WithOne(s => s.User)
+                .HasForeignKey(u => u.UserId);
 
             builder.Entity<Requested>()
                 .HasMany(p => p.Products)
-                .WithOne(p =>  p.Requested)
-                .HasForeignKey(p => p.RequestedId);
+                .WithOne(p => p.Requested)
+                .HasForeignKey(p => p.RequestedId)
+                .IsRequired(false);
 
             builder.Entity<Requested>()
                 .Property(p => p.CreatedAt)

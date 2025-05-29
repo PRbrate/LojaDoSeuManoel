@@ -1,0 +1,33 @@
+﻿using LojaDoSeuManoel.Api.Dtqs;
+using LojaDoSeuManoel.Api.Entities;
+using LojaDoSeuManoel.Api.Services;
+using LojaDoSeuManoel.Api.Services.Interfaces;
+using LojaDoSeuManoel.Core;
+using LojaDoSeuManoel.Core.Base.Controller;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+
+namespace LojaDoSeuManoel.Api.Controllers.v1
+{
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
+    public class ProductController : ApiControllerBase
+    {
+        private readonly IProductService _productService;
+
+        public ProductController(INotifier notifier, IUser user, IUserService userService, IProductService productService) : base(notifier, user)
+        {
+            _productService = productService;
+
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateProduct(ProductDtq productDtq)
+        {
+            var sucess = await _productService.CreateProduct(productDtq);
+
+            return CustomResponse();
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿using LojaDoSeuManoel.Api.Dtos;
 using LojaDoSeuManoel.Api.Dtqs;
 using LojaDoSeuManoel.Api.Entities;
-using LojaDoSeuManoel.Api.Repositories;
+using LojaDoSeuManoel.Api.Repositories.Interfaces;
 using LojaDoSeuManoel.MappingsConfig;
 
 namespace LojaDoSeuManoel.Api.Services

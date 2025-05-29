@@ -4,6 +4,7 @@ using LojaDoSeuManoel.Api.Repositories.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaDoSeuManoel.Api.Migrations
 {
     [DbContext(typeof(LojaDoSeuManoelContext))]
-    partial class LojaDoSeuManoelContextModelSnapshot : ModelSnapshot
+    [Migration("20250529214214_updateRelacionship")]
+    partial class updateRelacionship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,12 +38,12 @@ namespace LojaDoSeuManoel.Api.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<decimal>("Height")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(2, 2)
+                        .HasColumnType("decimal(2,2)");
 
                     b.Property<decimal>("Length")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(2, 2)
+                        .HasColumnType("decimal(2,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -55,8 +58,8 @@ namespace LojaDoSeuManoel.Api.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Width")
-                        .HasPrecision(18, 2)
-                        .HasColumnType("decimal(18,2)");
+                        .HasPrecision(2, 2)
+                        .HasColumnType("decimal(2,2)");
 
                     b.HasKey("Id");
 
