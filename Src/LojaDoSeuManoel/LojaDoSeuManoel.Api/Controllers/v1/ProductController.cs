@@ -1,4 +1,5 @@
-﻿using LojaDoSeuManoel.Api.Dtqs;
+﻿using LojaDoSeuManoel.Api.Dtos;
+using LojaDoSeuManoel.Api.Dtqs;
 using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Services;
 using LojaDoSeuManoel.Api.Services.Interfaces;
@@ -28,6 +29,46 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
             var sucess = await _productService.CreateProduct(productDtq);
 
             return CustomResponse();
+        }
+
+        [HttpGet("GetProducts")]
+        public async Task<ActionResult> GetProducts()
+        {
+            var sucess = await _productService.GetAllProducts();
+
+            return CustomResponse(sucess);
+        }
+
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetProduct(Guid id)
+        {
+
+            var sucess = await _productService.GetProduct(id);
+
+            return CustomResponse(sucess);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProduct(Guid id)
+        {
+
+            var sucess = await _productService.DeleteProduct(id);
+
+            if (!sucess) NotifyError("Erro ao deletar o Produto");
+
+            return CustomResponse(sucess);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateProduct(Guid id, ProductDtq productDtq)
+        {
+
+            var sucess = await _productService.UpdateProduct(id, productDtq);
+
+            if (!sucess) NotifyError("Erro ao atualizar o produto");
+
+            return CustomResponse(sucess);
         }
     }
 }

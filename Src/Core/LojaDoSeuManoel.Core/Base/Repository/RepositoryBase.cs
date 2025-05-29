@@ -16,7 +16,6 @@ namespace LojaDoSeuManoel.Core
                 _context = context;
                 DbSet = context.Set<TEntity>();
             }
-            public virtual async Task<TEntity> GetId(Guid id) => await DbSet.FindAsync(id);
             public async Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate) => await DbSet.AsNoTrackingWithIdentityResolution().Where(predicate).ToListAsync();
             public virtual async Task<bool> Create(TEntity entity)
             {
@@ -34,15 +33,14 @@ namespace LojaDoSeuManoel.Core
 
                 return await SaveChanges() > 0;
             }
-            public virtual async Task<bool> UpdateList(List<TEntity> entities)
-            {
-                entities.ForEach(entity => _context.Entry(entity).State = EntityState.Modified);
 
-                return await SaveChanges() > 0;
-            }
             public virtual async Task<bool> Delete(Guid id)
             {
-                DbSet.Remove(new TEntity { Id = id });
+                var entity = await DbSet.FindAsync(id);
+                if (entity == null)
+                    return false;
+
+                DbSet.Remove(entity);
                 return await SaveChanges() > 0;
             }
 

@@ -1,5 +1,6 @@
 ﻿using LojaDoSeuManoel.Api.Dtos;
 using LojaDoSeuManoel.Api.Dtqs;
+using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Entities.Validations;
 using LojaDoSeuManoel.Api.MappingsConfig;
 using LojaDoSeuManoel.Api.Repositories.Interfaces;
@@ -28,13 +29,14 @@ namespace LojaDoSeuManoel.Api.Services
                 Notifier("Nenhuma das dimenções pode ser maior que 80");
                 return false;
             }
-            if(_boxService.VerifyBox(productDtq).Count == 0)
+            var product = AutoMapperProduct.Map(productDtq);
+
+            if (_boxService.VerifyBox(product).Count == 0)
             {
                 Notifier("Não é possivel cadastrar esse produto, pois não caberá em nenhuma caixa");
                 return false;
             }
 
-            var product = AutoMapperProduct.Map(productDtq);
 
             if (!ExecuteVatidation(new ProductValidation(), product)) return false;
       
@@ -44,24 +46,71 @@ namespace LojaDoSeuManoel.Api.Services
 
         }
 
-        public Task<bool> DeleteProduct(Guid productId)
+        public async Task<bool> DeleteProduct(Guid productId)
         {
-            throw new NotImplementedException() 
+            var query = await _productRepository.GetById(productId);
+
+            if (query == null)
+            {
+                Notifier("Não Foi encontrado Produto com o id passado");
+                return false;
+            }
+
+            return await _productRepository.Delete(productId);
         }
 
-        public Task<List<ProductDto>> GetAllProducts()
+        public async Task<List<ProductDto>> GetAllProducts()
         {
-            throw new NotImplementedException();
+            var list = await _productRepository.GetProducts();
+
+            return list.Map(); ;
         }
 
-        public Task<ProductDto> GetHaircut(Guid id)
+        public async Task<ProductDto> GetProduct(Guid id)
         {
-            throw new NotImplementedException();
+            var product = await _productRepository.GetById(id);
+
+            if (product == null)
+            {
+                Notifier("Não Foi encontrado Produto com o id passado");
+                return null;
+            }
+            return AutoMapperProduct.Map(product);
         }
 
-        public Task<bool> UpdateProduct(ProductDto haircutDtq)
+        public async Task<bool> UpdateProduct(Guid id, ProductDtq productDtq)
         {
-            throw new NotImplementedException();
+            var response = await _productRepository.GetById(id);
+
+            if (response == null)
+            {
+                Notifier("Não foi encontrado Produto com o Id informado para a atualização");
+                return false;
+            }
+
+            var box = new BoxService();
+            if (productDtq.Width > 80 || productDtq.Length > 80 || productDtq.Height > 80)
+            {
+                Notifier("Nenhuma das dimenções pode ser maior que 80");
+                return false;
+            }
+
+            if (productDtq.Name != "string") response.Name = productDtq.Name;
+            if (productDtq.Width != 0) response.Width = productDtq.Width;
+            if (productDtq.Length != 0) response.Length = productDtq.Length;
+            if (productDtq.Height != 0) response.Height = productDtq.Height;
+
+            if (_boxService.VerifyBox(response).Count == 0)
+            {
+                Notifier("Não é possivel atualizar esse produto, pois não caberá em nenhuma caixa");
+                return false;
+            }
+
+
+            if (!ExecuteVatidation(new ProductValidation(), response)) return false;
+
+
+            return await _productRepository.Update(response);
         }
     }
 }

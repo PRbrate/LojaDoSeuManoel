@@ -9,6 +9,6 @@ namespace LojaDoSeuManoel.Api.Services.Interfaces
         Task<bool> DeleteProduct(Guid productId);
         Task<List<ProductDto>> GetAllProducts();
         Task<ProductDto> GetProduct(Guid id);
-        Task<bool> UpdateProduct(ProductDto haircutDtq);
+        Task<bool> UpdateProduct(Guid id, ProductDtq productDtq);
     }
 }

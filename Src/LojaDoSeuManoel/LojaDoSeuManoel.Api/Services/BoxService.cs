@@ -13,7 +13,7 @@ namespace LojaDoSeuManoel.Api.Services
             {"Box 3", new decimal[] {50.0m, 80.0m, 60.0m } },
         };
 
-        public List<string> VerifyBox(ProductDtq product)
+        public List<string> VerifyBox(Product product)
         {
             decimal[] productDimentions = { product.Height, product.Width, product.Length };
             var result = new List<string>();
