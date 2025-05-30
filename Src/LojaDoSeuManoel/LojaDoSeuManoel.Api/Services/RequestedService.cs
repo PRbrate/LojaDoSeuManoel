@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using LojaDoSeuManoel.Api.Dtos;
+﻿using LojaDoSeuManoel.Api.Dtos;
 using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.MappingsConfig;
 using LojaDoSeuManoel.Api.Repositories.Interfaces;
@@ -29,8 +28,8 @@ namespace LojaDoSeuManoel.Api.Services
             {
 
                 var requested = await AddProductRequested(requestedDtoItem.Products);
-                
-                if (requested == null) 
+
+                if (requested == null)
                 {
                     Notifier("Um ou mais produtos não foram encontrados");
                     return response;
@@ -47,7 +46,7 @@ namespace LojaDoSeuManoel.Api.Services
                     NumBox = packingResult.Count,
                     BoxNames = packingResult.Boxes.Select(b => b.BoxName).ToList(),
                 });
-                
+
 
             }
 

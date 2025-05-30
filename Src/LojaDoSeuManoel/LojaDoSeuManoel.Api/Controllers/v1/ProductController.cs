@@ -43,9 +43,15 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
         public async Task<IActionResult> GetProduct(Guid id)
         {
 
-            var sucess = await _productService.GetProduct(id);
+            var obj = await _productService.GetProduct(id);
 
-            return CustomResponse(sucess);
+            if (obj == null)
+            {
+                NotifyError("Produto Não encontrado");
+                return CustomResponse();
+            }
+
+            return CustomResponse(obj);
         }
 
         [HttpDelete("{id}")]

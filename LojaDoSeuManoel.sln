@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Core", "Src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Api", "Src\LojaDoSeuManoel\LojaDoSeuManoel.Api\LojaDoSeuManoel.Api.csproj", "{2DD82053-76C5-F116-F507-69634D7D0EF1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LojaDoSeuManoel.Test", "LojaDoSeuManoel.Test\LojaDoSeuManoel.Test.csproj", "{3CA14BBD-739D-477A-9BE2-01EF2781C778}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{2DD82053-76C5-F116-F507-69634D7D0EF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DD82053-76C5-F116-F507-69634D7D0EF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DD82053-76C5-F116-F507-69634D7D0EF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3CA14BBD-739D-477A-9BE2-01EF2781C778}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3CA14BBD-739D-477A-9BE2-01EF2781C778}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3CA14BBD-739D-477A-9BE2-01EF2781C778}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3CA14BBD-739D-477A-9BE2-01EF2781C778}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -36,6 +42,7 @@ Global
 		{17323AFF-BA68-48A3-8F8A-B60EC5B37AF4} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
 		{BA5C0DAF-3BEE-750E-2B16-9BE8B3904072} = {1DCE85A3-E8BD-4DC9-8768-D3BE6F871463}
 		{2DD82053-76C5-F116-F507-69634D7D0EF1} = {17323AFF-BA68-48A3-8F8A-B60EC5B37AF4}
+		{3CA14BBD-739D-477A-9BE2-01EF2781C778} = {17323AFF-BA68-48A3-8F8A-B60EC5B37AF4}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {999742A0-630F-4EFE-81A6-D17247EDBD8E}
