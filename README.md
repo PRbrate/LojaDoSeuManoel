@@ -32,7 +32,7 @@
 3. A aplicação estará disponível em:
 
   ```bash
-  http://localhost:8080/swagger
+   http://localhost:8080/swagger
   ```
 ## Usuário Administrador
 Um usuário administrador padrão é criado automaticamente ao iniciar a aplicação:
