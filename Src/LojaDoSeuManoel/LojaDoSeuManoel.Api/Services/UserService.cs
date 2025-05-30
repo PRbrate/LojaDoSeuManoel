@@ -1,6 +1,7 @@
 ﻿using LojaDoSeuManoel.Api.Dtos;
 using LojaDoSeuManoel.Api.Dtqs;
 using LojaDoSeuManoel.Api.Entities;
+using LojaDoSeuManoel.Api.Entities.Enums;
 using LojaDoSeuManoel.Api.Repositories.Interfaces;
 using LojaDoSeuManoel.MappingsConfig;
 
@@ -26,6 +27,13 @@ namespace LojaDoSeuManoel.Api.Services
 
             return user.Map();
         }
+
+        public async Task<UserDto> GetUser()
+        {
+            var user = await _userRepository.ge;
+
+            return user.Map();
+        }
         public async Task<bool> Update(UserDtq userDTQ)
         {
             var user = await _userRepository.GetUserFromId(userDTQ.Id);
@@ -33,6 +41,16 @@ namespace LojaDoSeuManoel.Api.Services
 
             user.Name = userDTQ.Name;
             user.Address = userDTQ.Address;
+
+            return await _userRepository.Update(user);
+        }
+
+        public async Task<bool> UpdateRole(string userId)
+        {
+            var user = await _userRepository.GetUserFromId(userId);
+            if (user == null) return false;
+
+            user.Role = UserRole.Admin;
 
             return await _userRepository.Update(user);
         }

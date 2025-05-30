@@ -1,6 +1,5 @@
 ﻿using LojaDoSeuManoel.Api.Dtos;
 using LojaDoSeuManoel.Api.Dtqs;
-using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Entities.Validations;
 using LojaDoSeuManoel.Api.MappingsConfig;
 using LojaDoSeuManoel.Api.Repositories.Interfaces;
@@ -23,8 +22,8 @@ namespace LojaDoSeuManoel.Api.Services
 
         public async Task<bool> CreateProduct(ProductDtq productDtq)
         {
-            var box = new BoxService();   
-            if(productDtq.Width > 80 || productDtq.Length > 80 || productDtq.Height > 80)
+            var box = new BoxService();
+            if (productDtq.Width > 80 || productDtq.Length > 80 || productDtq.Height > 80)
             {
                 Notifier("Nenhuma das dimenções pode ser maior que 80");
                 return false;
@@ -39,8 +38,8 @@ namespace LojaDoSeuManoel.Api.Services
 
 
             if (!ExecuteVatidation(new ProductValidation(), product)) return false;
-      
-            
+
+
             return await _productRepository.Create(product);
 
 

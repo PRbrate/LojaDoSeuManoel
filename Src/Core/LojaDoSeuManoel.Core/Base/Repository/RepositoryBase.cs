@@ -16,7 +16,6 @@ namespace LojaDoSeuManoel.Core
                 _context = context;
                 DbSet = context.Set<TEntity>();
             }
-            public async Task<IEnumerable<TEntity>> Search(Expression<Func<TEntity, bool>> predicate) => await DbSet.AsNoTrackingWithIdentityResolution().Where(predicate).ToListAsync();
             public virtual async Task<bool> Create(TEntity entity)
             {
                 DbSet.Add(entity);

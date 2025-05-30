@@ -60,5 +60,60 @@ namespace LojaDoSeuManoel.Api.Services
         {
             (a,b) = (b,a);
         }
+
+
+        public bool CanFitProductsInBox(List<Product> products, decimal[] boxDimensions)
+        {
+
+            decimal totalHeight = 0m;
+            foreach (var p in products)
+            {
+                var permutations = GeneratePermutation(new decimal[] { p.Height, p.Width, p.Length });
+                bool fitsInBase = permutations.Any(permutation =>
+                    permutation[1] <= boxDimensions[1] && 
+                    permutation[2] <= boxDimensions[2]);  
+
+                if (!fitsInBase) return false; 
+
+                totalHeight += p.Height;
+            }
+            return totalHeight <= boxDimensions[0]; 
+        }
+
+        public (List<(string BoxName, List<Product> Products)> Boxes, int Count) PackProducts(ICollection<Product> products)
+        {
+            var boxes = new List<(string BoxName, List<Product> Products)>();
+
+            foreach (var product in products)
+            {
+                bool placed = false;
+
+                for (int i = 0; i < boxes.Count; i++)
+                {
+                    var box = boxes[i];
+                    var newProductsList = box.Products.Concat(new[] { product }).ToList();
+                    if (CanFitProductsInBox(newProductsList, _box[box.BoxName]))
+                    {
+                        box.Products.Add(product);
+                        boxes[i] = (box.BoxName, box.Products);
+                        placed = true;
+                        break;
+                    }
+                }
+
+                if (!placed)
+                {
+                    var possibleBoxes = VerifyBox(product);
+                    if (possibleBoxes.Any())
+                    {
+                        boxes.Add((possibleBoxes.First(), new List<Product> { product }));
+                    }
+                }
+            }
+            return (boxes, boxes.Count);
+        }
+
+
+
     }
 }

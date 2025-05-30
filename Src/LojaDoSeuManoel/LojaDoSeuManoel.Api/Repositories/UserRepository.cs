@@ -11,20 +11,14 @@ namespace LojaDoSeuManoel.Api.Repositories
 
         public void Dispose() => _context.Dispose();
 
-        public async Task<List<User>> GetList()
-        {
-            var user = await _context.Users.ToListAsync();
-
-            return user;
-        }
         public async Task<User> GetFindByEmailAsync(string email)
         {
             var user = await _context.Users
-                        .Include(u => u.Requesteds)
                         .FirstOrDefaultAsync(u => u.Email == email);
 
             return user;
         }
+
         public async Task<User> GetUserFromId(string id)
         {
             var user = await _context.Users
@@ -33,7 +27,6 @@ namespace LojaDoSeuManoel.Api.Repositories
 
             return user;
         }
-
 
         public async Task<bool> Update(User user)
         {

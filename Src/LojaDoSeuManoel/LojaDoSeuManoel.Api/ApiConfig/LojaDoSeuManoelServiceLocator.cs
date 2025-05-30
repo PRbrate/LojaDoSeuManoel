@@ -18,6 +18,7 @@ namespace LojaDoSeuManoel.Api.ApiConfig
             services.AddScoped<IJwtService, JwtService>();
             services.AddSingleton<BoxService>();
             services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IRequestedService, RequestedService>();
             
 
 

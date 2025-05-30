@@ -76,6 +76,7 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
             NotifyError("Usuário ou senha incorretos");
             return CustomResponse();
         }
+
     }
 }
 

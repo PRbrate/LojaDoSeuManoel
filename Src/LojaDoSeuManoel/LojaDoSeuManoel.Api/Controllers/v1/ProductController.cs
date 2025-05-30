@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace LojaDoSeuManoel.Api.Controllers.v1
 {
     [ApiVersion("1.0")]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     [Route("api/v{version:apiVersion}/[controller]")]
     public class ProductController : ApiControllerBase
     {
@@ -22,6 +22,7 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
         }
 
         [HttpPost]
+        [Authorize(Roles ="Admin")]
         public async Task<ActionResult> CreateProduct(ProductDtq productDtq)
         {
             var sucess = await _productService.CreateProduct(productDtq);
@@ -48,6 +49,7 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> DeleteProduct(Guid id)
         {
 
@@ -59,6 +61,7 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles ="Admin")]
         public async Task<IActionResult> UpdateProduct(Guid id, ProductDtq productDtq)
         {
 
