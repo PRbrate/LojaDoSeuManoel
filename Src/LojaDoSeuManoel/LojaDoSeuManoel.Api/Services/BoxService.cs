@@ -80,7 +80,7 @@ namespace LojaDoSeuManoel.Api.Services
             return totalHeight <= boxDimensions[0]; 
         }
 
-        public (List<(string BoxName, List<Product> Products)> Boxes, int Count) PackProducts(ICollection<Product> products)
+        public virtual (List<(string BoxName, List<Product> Products)> Boxes, int Count) PackProducts(ICollection<Product> products)
         {
             var boxes = new List<(string BoxName, List<Product> Products)>();
 
