@@ -99,15 +99,14 @@ namespace LojaDoSeuManoel.Api.Services
             if (productDtq.Length != 0) response.Length = productDtq.Length;
             if (productDtq.Height != 0) response.Height = productDtq.Height;
 
+
             if (_boxService.VerifyBox(response).Count == 0)
             {
                 Notifier("Não é possivel atualizar esse produto, pois não caberá em nenhuma caixa");
                 return false;
             }
 
-
             if (!ExecuteVatidation(new ProductValidation(), response)) return false;
-
 
             return await _productRepository.Update(response);
         }

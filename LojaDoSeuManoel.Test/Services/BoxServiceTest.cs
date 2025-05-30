@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LojaDoSeuManoel.Api.Entities;
+﻿using LojaDoSeuManoel.Api.Entities;
 using LojaDoSeuManoel.Api.Services;
 
 namespace LojaDoSeuManoel.Test.Services
@@ -50,15 +45,20 @@ namespace LojaDoSeuManoel.Test.Services
         [Fact]
         public void PackProducts_MultipleProducts_ReturnsCorrectBoxCount()
         {
-            var products = new List<Product>
-        {
-            new Product {Name="Product1", Height = 30, Width = 30, Length = 40 }, 
-            new Product {Name="Product2", Height = 40, Width = 30, Length = 40 }, 
-            new Product {Name="Product3", Height = 50, Width = 50, Length = 60 }, 
-        };
+            //arrange
 
+            var products = new List<Product>
+            {
+                new Product {Name="Product1", Height = 30, Width = 30, Length = 40 },
+                new Product {Name="Product2", Height = 40, Width = 30, Length = 40 },
+                new Product {Name="Product3", Height = 50, Width = 50, Length = 60 },
+            };
+
+            //act
             var (boxes, count) = _boxService.PackProducts(products);
 
+
+            //assert
             Assert.Equal(3, count);
             Assert.Contains(boxes, b => b.BoxName == "Box 1" || b.BoxName == "Box 2");
             Assert.Contains(boxes, b => b.BoxName == "Box 3");

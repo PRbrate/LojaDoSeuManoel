@@ -29,6 +29,7 @@ namespace LojaDoSeuManoel.Core
             public virtual async Task<bool> Update(TEntity entity)
             {
                 _context.Entry(entity).State = EntityState.Modified;
+                entity.UpdatedAt = DateTime.UtcNow;
 
                 return await SaveChanges() > 0;
             }
