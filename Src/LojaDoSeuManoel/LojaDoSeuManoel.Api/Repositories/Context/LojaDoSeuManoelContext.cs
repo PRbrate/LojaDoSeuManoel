@@ -12,7 +12,6 @@ namespace LojaDoSeuManoel.Api.Repositories.Context
 
 
         public DbSet<User> User { get; set; }
-        public DbSet<Requested> Requested { get; set; }
         public DbSet<Product> Products { get; set; }
 
         protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
@@ -42,17 +41,6 @@ namespace LojaDoSeuManoel.Api.Repositories.Context
                 .HasMany(u => u.Requesteds)
                 .WithOne(s => s.User)
                 .HasForeignKey(u => u.UserId);
-
-            builder.Entity<Requested>()
-                .HasMany(p => p.Products)
-                .WithOne(p => p.Requested)
-                .HasForeignKey(p => p.RequestedId)
-                .IsRequired(false);
-
-            builder.Entity<Requested>()
-                .Property(p => p.CreatedAt)
-                .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                .ValueGeneratedOnAdd();
 
             builder.Entity<Product>()
                 .Property(p => p.CreatedAt)

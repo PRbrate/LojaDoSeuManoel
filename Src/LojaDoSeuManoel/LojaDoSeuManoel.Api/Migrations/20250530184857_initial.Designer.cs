@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaDoSeuManoel.Api.Migrations
 {
     [DbContext(typeof(LojaDoSeuManoelContext))]
-    [Migration("20250528153559_initial")]
+    [Migration("20250530184857_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -38,12 +38,12 @@ namespace LojaDoSeuManoel.Api.Migrations
                         .HasDefaultValueSql("CURRENT_TIMESTAMP");
 
                     b.Property<decimal>("Height")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<decimal>("Length")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -51,15 +51,15 @@ namespace LojaDoSeuManoel.Api.Migrations
                         .IsUnicode(false)
                         .HasColumnType("varchar(100)");
 
-                    b.Property<Guid>("RequestedId")
+                    b.Property<Guid?>("RequestedId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Width")
-                        .HasPrecision(2, 2)
-                        .HasColumnType("decimal(2,2)");
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -75,9 +75,7 @@ namespace LojaDoSeuManoel.Api.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("datetime2")
-                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("datetime2");
@@ -361,9 +359,7 @@ namespace LojaDoSeuManoel.Api.Migrations
                 {
                     b.HasOne("LojaDoSeuManoel.Api.Entities.Requested", "Requested")
                         .WithMany("Products")
-                        .HasForeignKey("RequestedId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RequestedId");
 
                     b.Navigation("Requested");
                 });

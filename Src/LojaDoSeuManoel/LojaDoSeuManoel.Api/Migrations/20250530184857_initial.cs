@@ -182,7 +182,7 @@ namespace LojaDoSeuManoel.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     UserId = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
@@ -204,10 +204,10 @@ namespace LojaDoSeuManoel.Api.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "varchar(100)", unicode: false, maxLength: 100, nullable: false),
-                    Width = table.Column<decimal>(type: "decimal(2,2)", precision: 2, scale: 2, nullable: false),
-                    Height = table.Column<decimal>(type: "decimal(2,2)", precision: 2, scale: 2, nullable: false),
-                    Length = table.Column<decimal>(type: "decimal(2,2)", precision: 2, scale: 2, nullable: false),
-                    RequestedId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Width = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Height = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    Length = table.Column<decimal>(type: "decimal(18,2)", precision: 18, scale: 2, nullable: false),
+                    RequestedId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -219,8 +219,7 @@ namespace LojaDoSeuManoel.Api.Migrations
                         column: x => x.RequestedId,
                         principalSchema: "dbo",
                         principalTable: "Requested",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
