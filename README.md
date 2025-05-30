@@ -31,9 +31,9 @@
    docker-compose up --build
 3. A aplicação estará disponível em:
 
-  ```bash
+     ```bash
    http://localhost:8080/swagger
-  ```
+     ```
 ## Usuário Administrador
 Um usuário administrador padrão é criado automaticamente ao iniciar a aplicação:
   ```
@@ -41,6 +41,6 @@ Um usuário administrador padrão é criado automaticamente ao iniciar a aplica�
   Senha: Admin123!
   ```
 
-##Autor
-Nome: Paulo Roberto Brandão
-GitHub: @PRbrate
+## Autor
+Nome: Paulo Roberto Brandão 
+GitHub: https://github.com/PRbrate
