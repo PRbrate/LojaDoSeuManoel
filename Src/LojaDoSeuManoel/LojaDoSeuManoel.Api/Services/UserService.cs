@@ -28,9 +28,9 @@ namespace LojaDoSeuManoel.Api.Services
             return user.Map();
         }
 
-        public async Task<UserDto> GetUser()
+        public async Task<List<UserDto>> GetUsers()
         {
-            var user = await _userRepository.ge;
+            var user = await _userRepository.GetUserAsync();
 
             return user.Map();
         }

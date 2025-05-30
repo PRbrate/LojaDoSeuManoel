@@ -18,6 +18,20 @@ namespace LojaDoSeuManoel.MappingsConfig
         };
 
         public static UserDto Map(this User user) => new
-            (user.Id, user.Name, user.Email, user.Address);
+            (user.Id, user.Name, user.Email, user.Address, user.Role.ToString());
+
+        public static List<UserDto> Map(this ICollection<User> users)
+        {
+            return users.Select(user => new UserDto
+            (
+                user.Id,
+                user.Name,
+                user.Email,
+                user.Address,
+                user.Role.ToString()
+
+
+            )).ToList();
+        }
     }
 }

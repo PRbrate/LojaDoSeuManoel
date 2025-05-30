@@ -6,6 +6,7 @@ namespace LojaDoSeuManoel.Api.Services
 {
     public interface IUserService
     {
+        Task<List<UserDto>> GetUsers();
         Task<UserDto> GetUserById(string id);
         Task<bool> UpdateRole(string userId);
         Task<User> GetFindByEmailAsync(string email);

@@ -35,7 +35,7 @@ namespace LojaDoSeuManoel.Api.Controllers.v1
         public async Task<IActionResult> GetUsers()
         {
 
-            var result = await _userService.Get();
+            var result = await _userService.GetUsers();
 
             return CustomResponse(result);
 

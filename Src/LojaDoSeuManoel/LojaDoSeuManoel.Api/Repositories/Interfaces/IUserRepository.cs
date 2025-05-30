@@ -4,7 +4,7 @@ namespace LojaDoSeuManoel.Api.Repositories.Interfaces
 {
     public interface IUserRepository
     {
-        Task<User> GetUserAsync(int id);
+        Task<List<User>> GetUserAsync();
         Task<User> GetFindByEmailAsync(string email);
         Task<User> GetUserFromId(string id);
         Task<bool> Update(User user);

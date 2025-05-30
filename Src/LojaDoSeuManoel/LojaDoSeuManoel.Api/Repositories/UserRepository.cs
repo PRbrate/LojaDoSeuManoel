@@ -19,6 +19,11 @@ namespace LojaDoSeuManoel.Api.Repositories
             return user;
         }
 
+        public async Task<List<User>> GetUserAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
         public async Task<User> GetUserFromId(string id)
         {
             var user = await _context.Users
